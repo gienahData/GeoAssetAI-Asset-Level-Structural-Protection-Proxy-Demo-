@@ -54,6 +54,7 @@ and model governance discussions.
 ---
 
 ## Repository Structure
+```text
 .
 ├── bootstrap_env.py              # Environment setup & validation script
 ├── environment_report.txt        # Auto-generated environment diagnostics
@@ -71,3 +72,4 @@ and model governance discussions.
 │   ├── geochecks.py             # Spatial validation logic
 │   └── score.py                 # Scoring & explainability
 └── README.md
+
