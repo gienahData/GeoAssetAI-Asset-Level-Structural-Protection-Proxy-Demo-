@@ -54,3 +54,20 @@ and model governance discussions.
 ---
 
 ## Repository Structure
+.
+├── bootstrap_env.py # Environment setup & validation script
+├── environment_report.txt # Auto-generated environment diagnostics
+├── data/
+│ ├── geoassets.geojson # Synthetic asset locations
+│ ├── reports/ # Synthetic company disclosures
+│ └── ground_truth.json # Synthetic evaluation labels
+├── notebooks/
+│ ├── 01_data_generation.ipynb
+│ ├── 02_text_extraction.ipynb
+│ ├── 03_geospatial_checks.ipynb
+│ └── 04_scoring_and_evaluation.ipynb
+├── src/
+│ ├── extract.py # Text extraction logic
+│ ├── geochecks.py # Spatial validation logic
+│ └── score.py # Scoring & explainability
+└── README.md
