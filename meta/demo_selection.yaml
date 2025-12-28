@@ -1,0 +1,10 @@
+country: Netherlands
+sample_size: 12
+bbox:
+  min_lon: null
+  min_lat: null
+  max_lon: null
+  max_lat: null
+notes: >
+  Real, open European data selected for demonstration purposes.
+  Bounding box finalized after facility selection.
