@@ -38,23 +38,34 @@ and model governance discussions.
 ---
 
 ## Repository Structure
+
+```text
 .
 ├── bootstrap_env.py              # Environment setup & validation script
 ├── environment_report.txt        # Auto-generated environment diagnostics
+├── meta/
+│   └── demo_selection.yaml       # Demo scope & geographic configuration
 ├── data/
-│   ├── geoassets.geojson         # Synthetic asset locations
-│   ├── reports/                  # Synthetic company disclosures
-│   └── ground_truth.json         # Synthetic evaluation labels
+│   ├── real_assets.geojson       # Real asset locations (Netherlands sample)
+│   ├── real_flood_defenses.geojson
+│   │                             # OSM flood defense infrastructure (raw)
+│   ├── real_flood_defenses_simplified.geojson
+│   │                             # Simplified defenses for spatial analysis
+│   ├── real_assets_with_geo_props.geojson
+│   │                             # Assets enriched with protection proxy
+│   ├── real_proxy_scores.csv     # Final proxy scores (tabular)
+│   └── ground_truth.json         # Synthetic evaluation labels (demo only)
 ├── notebooks/
-│   ├── 01_data_generation.ipynb
+│   ├── 01_data_ingestion_real_sample.ipynb
 │   ├── 02_text_extraction.ipynb
-│   ├── 03_geospatial_checks.ipynb
-│   └── 04_scoring_and_evaluation.ipynb
+│   └── 03_geospatial_structural_protection_proxy.ipynb
 ├── src/
-│   ├── extract.py               # Text extraction logic
-│   ├── geochecks.py             # Spatial validation logic
-│   └── score.py                 # Scoring & explainability
+│   ├── extract.py                # Text extraction logic
+│   ├── geochecks.py              # Spatial validation logic
+│   └── score.py                  # Scoring & explainability
 └── README.md
+
+```
 
 ## Methodology
 
