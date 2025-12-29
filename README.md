@@ -76,44 +76,56 @@ and model governance discussions.
 ## Methodology
 
 This project derives an **asset-level structural flood protection proxy** using a
-multi-faceted geospatial approach. The objective is not to determine whether an
-asset is definitively protected, but to infer the **likelihood of structural
-protection** based on spatial context where direct disclosure is absent.
+multi-faceted geospatial approach. The objective is **not** to determine whether an
+asset is definitively protected, but to infer the **likelihood of structural protection**
+based on spatial context where direct disclosure is absent.
+
+---
 
 ### Why a geospatial proxy is required
-Authoritative facility-level registries (e.g. E-PRTR) provide precise asset
-locations and activity metadata but **do not disclose structural flood protection
-measures** at the asset level. This absence is systematic rather than incidental.
 
-As a result, structural protection must be inferred from the **spatial context
-of flood defense systems**, rather than from textual disclosures.
+- Authoritative facility-level registries (e.g. **E-PRTR**) provide precise asset locations
+  and activity metadata.
+- These registries **do not disclose structural flood protection measures** at the asset level.
+- This absence is **systematic rather than incidental**.
+
+As a result, structural protection must be inferred from the **spatial context of flood
+defense systems**, not from textual disclosures.
+
+---
 
 ### Input data
-- **Asset locations:** European Pollutant Release and Transfer Register (E-PRTR),
-  filtered to a small Netherlands sample for demonstration.
-- **Flood defense infrastructure:** OpenStreetMap (OSM) features including dikes,
-  levees, embankments, flood walls, dams, sluices, and pumping stations.
-- **Coordinate systems:**
-  - All distance and buffer calculations are performed in **EPSG:28992
-    (Amersfoort / RD New)** to ensure metric accuracy.
-  - Outputs are stored in **EPSG:4326 (WGS84)** for interoperability.
+
+- **Asset locations**
+  - European Pollutant Release and Transfer Register (E-PRTR)
+- **Flood defense infrastructure**
+  - OpenStreetMap (OSM): dikes, levees, embankments, flood walls, dams, sluices,
+    and pumping stations
+- **Coordinate reference systems**
+  - Metric calculations: **EPSG:28992 (Amersfoort / RD New)**
+  - Storage & visualization: **EPSG:4326 (WGS84)**
+
+---
 
 ### Geospatial signals
-Three complementary spatial signals are computed for each asset:
+
+The proxy is based on three complementary spatial signals:
 
 1. **Proximity to nearest flood defense**
-   - Distance (in meters) to the closest mapped flood defense feature.
-   - Captures local, direct protection.
+   - Distance (meters) to the closest mapped defense feature
+   - Captures local, direct protection
 
 2. **Defense density within 1 km**
-   - Count of flood defense features within a 1 km radius.
-   - Captures system-level protection typical of polder-based flood management.
+   - Count of defense features within a 1 km radius
+   - Captures system-level protection typical of polder-based flood management
 
 3. **Soft containment within 500 m**
-   - Boolean indicator of whether the asset lies within a 500 m buffer of any
-     defense feature.
-   - Used as a contextual boost rather than a hard rule.
+   - Boolean indicator of whether the asset lies within a 500 m buffer of any defense
+   - Used as a contextual boost, not a hard rule
 
-### Scoring
+---
+
+### Scoring and labels
+
 The final proxy score is computed as:
 
