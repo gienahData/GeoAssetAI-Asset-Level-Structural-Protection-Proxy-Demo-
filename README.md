@@ -38,7 +38,6 @@ and model governance discussions.
 ---
 
 ## Repository Structure
----
 .
 ├── bootstrap_env.py              # Environment setup & validation script
 ├── environment_report.txt        # Auto-generated environment diagnostics
