@@ -14,22 +14,6 @@ level** in existing physical risk solutions.
 
 ---
 
-## Problem Statement
-Financial institutions increasingly ask questions such as:
-
-> *“Does this specific asset have structural protection against physical risks (e.g. flood defenses)?”*
-
-In many industry-standard models, adaptation is incorporated at:
-- regional level (e.g. flood protection standards), or
-- issuer level (company-wide adaptation assumptions),
-
-but **not at individual asset level**.
-
-This demo explores a **proxy-based, explainable approach** to bridge that gap without claiming
-ground truth.
-
----
-
 ## What This Project Does
 For a small set of synthetic assets, the pipeline:
 1. Extracts **adaptation-related signals** from company disclosures (text).
@@ -54,14 +38,13 @@ and model governance discussions.
 ---
 
 ## Repository Structure
-```text
 .
 ├── bootstrap_env.py              # Environment setup & validation script
 ├── environment_report.txt        # Auto-generated environment diagnostics
 ├── data/
 │   ├── geoassets.geojson         # Synthetic asset locations
-│   ├── reports/                 # Synthetic company disclosures
-│   └── ground_truth.json        # Synthetic evaluation labels
+│   ├── reports/                  # Synthetic company disclosures
+│   └── ground_truth.json         # Synthetic evaluation labels
 ├── notebooks/
 │   ├── 01_data_generation.ipynb
 │   ├── 02_text_extraction.ipynb
@@ -112,3 +95,58 @@ flood defense systems**, rather than from textual disclosures.
 **Scoring and labels**
 The final proxy score is computed as:
 
+```
+defense_score =
+  min(1.0,
+      0.6 * proximity_score +
+      0.4 * density_score +
+      buffer_boost)
+```
+
+Where:
+- `density_score = min(1.0, count_within_1000m / 3)`
+- `buffer_boost = 0.3` if within 500 m of a defense feature
+
+Assets are labeled as:
+- **Likely** (≥ 0.70)
+- **Possible** (0.35 – 0.70)
+- **Unlikely** (< 0.35)
+
+These labels are **heuristic and indicative**, not deterministic.
+
+---
+
+## Results
+
+Outputs produced by the pipeline:
+- `data/real_assets_with_geo_props.geojson` — asset geometries enriched with distance,
+  density, scores, and labels.
+- `data/real_proxy_scores.csv` — tabular summary.
+
+The demonstration dataset (Netherlands sample) showed:
+- No textual disclosures of structural protection in the facility registry.
+- Defense-proxy signals driven by OSM-derived defenses (distance + density).
+
+---
+
+## Limitations and Intended Use
+
+- This proxy does **not** confirm the presence, design standard, or effectiveness
+  of flood protection at an asset.
+- OpenStreetMap completeness varies by region and feature type.
+- Buffer distances and scoring weights are heuristic and chosen for transparency
+  and interpretability.
+
+Intended as:
+- an upstream data-enrichment layer,
+- a QA/context signal for analysts and modelers,
+- a complement to issuer-level adaptation measures (not a replacement).
+
+---
+
+## Data Sources and Attribution
+
+- **E-PRTR** — European Pollutant Release and Transfer Register.  
+- **OpenStreetMap** — flood defense features via Overpass API. © OpenStreetMap contributors (ODbL).
+
+All data in this repository are publicly available or synthetic for demonstration purposes.
