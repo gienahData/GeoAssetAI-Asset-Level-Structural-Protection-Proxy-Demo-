@@ -155,9 +155,77 @@ Intended as:
 
 ---
 
+## Facility Location Data (E-PRTR)
+
+### Source
+Facility locations used in this project are derived from the **European Pollutant Release and Transfer Register (E-PRTR)**, an official environmental registry maintained by the European Environment Agency (EEA).
+
+E-PRTR provides publicly available, facility-level information on industrial installations across Europe, including:
+- facility name and identifier,
+- geographic coordinates (latitude, longitude),
+- country and city,
+- sector and Annex I activity classification.
+
+The registry is designed for environmental reporting and regulatory transparency and **does not contain information on structural flood protection measures**.
+
+### Dataset used
+This project uses the file:
+
+F1_4_Air_Releases_Facilities.csv
+
+
 ## Data Sources and Attribution
 
 - **E-PRTR** — European Pollutant Release and Transfer Register.  
 - **OpenStreetMap** — flood defense features via Overpass API. © OpenStreetMap contributors (ODbL).
 
 All data in this repository are publicly available or synthetic for demonstration purposes.
+
+## Facility Location Data (E-PRTR)
+
+### Source
+Facility locations used in this project are derived from the **European Pollutant Release and Transfer Register (E-PRTR)**, an official environmental registry maintained by the European Environment Agency (EEA).
+
+E-PRTR provides publicly available, facility-level information on industrial installations across Europe, including:
+- facility name and identifier,
+- geographic coordinates (latitude, longitude),
+- country and city,
+- sector and Annex I activity classification.
+
+The registry is designed for environmental reporting and regulatory transparency and **does not contain information on structural flood protection measures**.
+
+### Dataset used
+This project uses the file:
+
+F1_4_Air_Releases_Facilities.csv
+
+
+This table contains **facility-level records** (as opposed to national or sector aggregates) and is therefore the appropriate source for asset-level geospatial analysis.
+
+### How to download the file
+The dataset can be downloaded from the European Environment Agency’s E-PRTR data portal:
+
+🔗 **E-PRTR data portal (EEA)**  
+https://www.eea.europa.eu/data-and-maps/data/member-states-reporting-art-7-under-the-european-pollutant-release-and-transfer-register-e-prtr-regulation
+
+From the data portal:
+1. Navigate to the E-PRTR dataset page.
+2. Download the **CSV (comma-separated values) archive**.
+3. Extract the archive locally.
+4. Locate the file named:
+F1_4_Air_Releases_Facilities.csv
+
+5. Place the file into the project directory:
+data/
+└── raw_eprtr_sample.csv
+
+(The filename may be renamed for convenience, as done in this repository.)
+
+### Why this dataset is used
+The `F1_4_Air_Releases_Facilities.csv` table is used because:
+- it provides **authoritative, geocoded facility locations**,
+- it is **publicly available and reproducible**,
+- it aligns with how institutional risk models ingest asset-level location data.
+
+However, because E-PRTR is an **environmental emissions registry**, it does not include asset-level adaptation or protection attributes. This limitation directly motivates the geospatial proxy approach demonstrated in this project.
+
