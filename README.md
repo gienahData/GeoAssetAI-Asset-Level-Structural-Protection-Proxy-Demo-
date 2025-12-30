@@ -57,9 +57,8 @@ and model governance discussions.
 │   └── ground_truth.json         # Synthetic evaluation labels (demo only)
 ├── notebooks/
 │   ├── 01_data_ingestion_real_sample.ipynb
-│   ├── 02_text_extraction.ipynb
-│   └── 03_geospatial_structural_protection_proxy.ipynb
-├── src/
+│   ├── 02_geospatial_structural_protection_proxy.ipynb
+│   ├── 03_geospatial_structural_protection_proxy.ipynb
 │   ├── extract.py                # Text extraction logic
 │   ├── geochecks.py              # Spatial validation logic
 │   └── score.py                  # Scoring & explainability
